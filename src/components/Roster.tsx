@@ -63,7 +63,7 @@ function CharacterCard({ ranger, index }: { ranger: RangerInfo; index: number })
               <h3 className="text-sm font-semibold text-slate-400 mb-2 flex items-center gap-2">
                 <User size={16} className={ranger.textColor} /> 외형 및 복장
               </h3>
-              <p className="text-slate-300 leading-relaxed text-sm md:text-base">{ranger.appearance}</p>
+              <p className="text-slate-300 leading-relaxed text-sm md:text-base whitespace-pre-line">{ranger.appearance}</p>
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ function CharacterCard({ ranger, index }: { ranger: RangerInfo; index: number })
           <h3 className="text-sm font-semibold text-pink-400/90 mb-2 flex items-center gap-2">
             <Flame size={16} /> 성격 및 성적 성향
           </h3>
-          <p className="text-slate-300 leading-relaxed text-sm md:text-base">{ranger.personality}</p>
+          <p className="text-slate-300 leading-relaxed text-sm md:text-base whitespace-pre-line">{ranger.personality}</p>
         </div>
 
         {/* Ability */}
@@ -87,16 +87,16 @@ function CharacterCard({ ranger, index }: { ranger: RangerInfo; index: number })
             <h3 className={`text-lg font-display font-bold mb-3 flex items-center gap-2 ${ranger.textColor}`}>
               <Zap size={20} /> {ranger.ability.name}
             </h3>
-            <p className="text-slate-300 mb-4">{ranger.ability.description}</p>
+            <p className="text-slate-300 mb-4 whitespace-pre-line">{ranger.ability.description}</p>
             
             <div className="space-y-3 text-sm">
               <div className="flex gap-3">
                 <span className="text-slate-500 font-medium flex-shrink-0">일상 활용:</span>
-                <span className="text-slate-300">{ranger.ability.daily}</span>
+                <span className="text-slate-300 whitespace-pre-line">{ranger.ability.daily}</span>
               </div>
               <div className="flex gap-3">
                 <span className="text-slate-500 font-medium flex-shrink-0">전투 필살기:</span>
-                <span className="text-slate-100 font-medium">{ranger.ability.ultimate}</span>
+                <span className="text-slate-100 font-medium whitespace-pre-line">{ranger.ability.ultimate}</span>
               </div>
             </div>
           </div>
@@ -108,14 +108,14 @@ function CharacterCard({ ranger, index }: { ranger: RangerInfo; index: number })
             <h3 className="text-sm font-semibold text-slate-400 mb-2 flex items-center gap-2">
               <Activity size={16} className={ranger.textColor} /> 특징 및 취향
             </h3>
-            <p className="text-slate-300 leading-relaxed text-sm">{ranger.traits}</p>
+            <p className="text-slate-300 leading-relaxed text-sm whitespace-pre-line">{ranger.traits}</p>
           </div>
           
           <div>
             <h3 className="text-sm font-semibold text-slate-400 mb-2 flex items-center gap-2">
               <Home size={16} className={ranger.textColor} /> 개인실 구역
             </h3>
-            <p className="text-slate-300 leading-relaxed text-sm">{ranger.room}</p>
+            <p className="text-slate-300 leading-relaxed text-sm whitespace-pre-line">{ranger.room}</p>
           </div>
         </div>
         
