@@ -1,4 +1,4 @@
-export type TabState = 'worldview' | 'hq' | 'roster';
+export type TabState = 'worldview' | 'gallery' | 'roster';
 
 export interface RangerInfo {
   id: string;

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Globe, Shield, Users } from 'lucide-react';
+import { Globe, Images, Users } from 'lucide-react';
 import Worldview from './components/Worldview';
-import Headquarters from './components/Headquarters';
+import Gallery from './components/Gallery';
 import Roster from './components/Roster';
 import { TabState } from './types';
 
@@ -21,7 +21,7 @@ export default function App() {
       <main className="relative z-10 w-full max-w-3xl mx-auto px-4 md:px-6 pt-12 pb-32">
         <AnimatePresence mode="wait">
           {activeTab === 'worldview' && <Worldview key="worldview" />}
-          {activeTab === 'hq' && <Headquarters key="hq" />}
+          {activeTab === 'gallery' && <Gallery key="gallery" />}
           {activeTab === 'roster' && <Roster key="roster" />}
         </AnimatePresence>
       </main>
@@ -59,15 +59,15 @@ export default function App() {
             </span>
           </button>
 
-          {/* HQ Tab */}
+          {/* Gallery Tab */}
           <button
-            onClick={() => setActiveTab('hq')}
+            onClick={() => setActiveTab('gallery')}
             className={`flex flex-col items-center p-3 w-20 transition-colors ${
-              activeTab === 'hq' ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
+              activeTab === 'gallery' ? 'text-blue-400' : 'text-slate-500 hover:text-slate-300'
             }`}
           >
-            <Shield size={24} className={activeTab === 'hq' ? 'drop-shadow-[0_0_8px_rgba(96,165,250,0.8)]' : ''} />
-            <span className="text-[10px] font-bold mt-1 uppercase tracking-wider">HQ</span>
+            <Images size={24} className={activeTab === 'gallery' ? 'drop-shadow-[0_0_8px_rgba(96,165,250,0.8)]' : ''} />
+            <span className="text-[10px] font-bold mt-1 uppercase tracking-wider">Gallery</span>
           </button>
         </div>
       </nav>
