@@ -36,10 +36,58 @@ export default function Worldview() {
 
   const copyToClipboard = () => {
     if (selectedPersona) {
-      navigator.clipboard.writeText(selectedPersona);
+      let textToCopy = selectedPersona;
+      const lines = selectedPersona.split('\n');
+      
+      if (lines.length >= 4 && lines[1].startsWith('- ') && lines[2].startsWith('- ')) {
+        const title = lines[0];
+        const ability = lines[1].replace(/^- /, '');
+        const daily = lines[2].replace(/^- 일상 활용:\s*/, '').replace(/^- /, '');
+        const ultimate = lines[3].replace(/^- /, '');
+        textToCopy = `${title}\n능력: ${ability}\n일상 활용: ${daily}\n필살기: ${ultimate}`;
+      }
+
+      navigator.clipboard.writeText(textToCopy);
       setHasCopied(true);
       setTimeout(() => setHasCopied(false), 2000);
     }
+  };
+
+  const renderPersona = (rawText: string) => {
+    const lines = rawText.split('\n');
+    if (lines.length >= 4 && lines[1].startsWith('- ') && lines[2].startsWith('- ')) {
+      const title = lines[0];
+      const ability = lines[1].replace(/^- /, '');
+      const daily = lines[2].replace(/^- 일상 활용:\s*/, '').replace(/^- /, '');
+      const ultimate = lines[3].replace(/^- /, '');
+
+      return (
+        <div className="space-y-4">
+          <h4 className="font-bold text-lg md:text-xl text-white text-center pb-3 border-b border-slate-700/50">{title}</h4>
+          
+          <div className="space-y-3 text-sm md:text-base leading-relaxed text-slate-300">
+            <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/50 shadow-sm">
+              <span className="text-blue-400 font-bold mb-1.5 block text-xs uppercase tracking-wider">능력</span>
+              <span className="text-slate-200 block">{ability}</span>
+            </div>
+            <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/50 shadow-sm">
+              <span className="text-green-400 font-bold mb-1.5 block text-xs uppercase tracking-wider">일상 활용</span>
+              <span className="text-slate-200 block">{daily}</span>
+            </div>
+            <div className="bg-slate-900/80 p-3.5 rounded-xl border border-slate-700/50 shadow-sm">
+              <span className="text-pink-400 font-bold mb-1.5 block text-xs uppercase tracking-wider">필살기</span>
+              <span className="text-slate-200 block">{ultimate}</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <p className="text-sm md:text-base text-white font-medium leading-relaxed whitespace-pre-line">
+        {rawText}
+      </p>
+    );
   };
 
   return (
@@ -244,9 +292,7 @@ export default function Worldview() {
                     
                     <div className="bg-slate-950/80 border border-slate-700/50 rounded-xl p-6 w-full my-6 text-left shadow-inner relative overflow-hidden max-h-[60vh] overflow-y-auto">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500" />
-                      <p className="text-sm md:text-base text-white font-medium leading-relaxed whitespace-pre-line">
-                        {selectedPersona}
-                      </p>
+                      {renderPersona(selectedPersona)}
                     </div>
 
                     <div className="flex flex-col gap-3 w-full">
